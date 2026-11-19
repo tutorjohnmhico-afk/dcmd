@@ -4,7 +4,7 @@
 
 ## What to review now
 
-Run `npm --prefix dcmd-portal run dev` from the repository root and open `/staff-tools` on the local Vite server. The local directory has 12 bookmark entries, grouped by purpose, with search and a category filter. The `Login` bookmark is a placeholder whose destination and purpose need confirmation.
+Run `npm --prefix dcmd-portal run dev` from the repository root and select **Log in** in the header to open `/staff-tools`. The local directory has 12 bookmark entries, grouped by purpose, with search and a category filter. The `Login` bookmark is a placeholder whose destination and purpose need confirmation.
 
 A production build serves a status page at `/staff-tools`. The local directory is excluded from the production bundle. The prototype has no credentials, live tool destinations, or sign-in flow.
 

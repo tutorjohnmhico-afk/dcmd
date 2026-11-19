@@ -34,7 +34,7 @@ export default function Header() {
           <button ref={menuToggle} type="button" className="menu-toggle" aria-controls="primary-nav" aria-expanded={menuOpen} aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} onClick={() => setMenuOpen(open => !open)}>{menuOpen ? '✕' : '☰'}</button>
           <nav id="primary-nav" className={`nav-links ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
             {navigation.map(([label, href]) => <a key={href} className={activeSection === href ? 'active' : ''} aria-current={activeSection === href ? 'location' : undefined} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
-            <a className="nav-cta" href="#contact" onClick={() => setMenuOpen(false)}>Get in touch <Arrow diagonal /></a>
+            <a className="nav-cta" href="/staff-tools" onClick={() => setMenuOpen(false)}>Log in <Arrow diagonal /></a>
           </nav>
         </div>
         <div className="reading-progress" aria-hidden="true" />
