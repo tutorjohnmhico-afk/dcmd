@@ -1,27 +1,21 @@
 import { useState } from 'react';
 
-const groups = [
-  { name: 'Staff & collaboration', tools: ['HRIS', 'DCMD ICT', 'SharePoint'] },
-  { name: 'Monitoring & support', tools: ['Zabbix', 'ITSM'] },
-  { name: 'Network & security', tools: ['BMC-FIREWALL', 'BCH-FIREWALL', 'Sophos-VPNPortal', 'BCH-WLC', 'BMC-WLC', 'BCH / BMC · Network Backup Manager'] },
-  { name: 'Access', tools: ['Login'] },
-];
-
-export default function StaffToolsDirectory() {
+export default function StaffToolsDirectory({ tools, preview = false }) {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('');
   const term = query.trim().toLowerCase();
-  const results = groups
-    .filter(group => !category || group.name === category)
-    .map(group => ({ ...group, tools: group.tools.filter(tool => tool.toLowerCase().includes(term)) }))
+  const categories = [...new Set(tools.map(tool => tool.category))];
+  const results = categories
+    .filter(name => !category || name === category)
+    .map(name => ({ name, tools: tools.filter(tool => tool.category === name && tool.name.toLowerCase().includes(term)) }))
     .filter(group => group.tools.length > 0);
   const count = results.reduce((total, group) => total + group.tools.length, 0);
 
   return (
     <section className="staff-tools-directory" aria-labelledby="staff-tools-directory-title">
       <div className="staff-tools-notice">
-        <h2 id="staff-tools-directory-title">Local integration preview</h2>
-        <p>Sign-in and tool links are pending. This preview uses the names from the project bookmark list.</p>
+        <h2 id="staff-tools-directory-title">{preview ? 'Local integration preview' : 'Your tools'}</h2>
+        {preview && <p>This preview uses bookmark names. Link destinations are pending.</p>}
       </div>
       <div className="staff-tools-controls">
         <label>
@@ -32,16 +26,24 @@ export default function StaffToolsDirectory() {
           Category
           <select value={category} onChange={event => setCategory(event.target.value)}>
             <option value="">All categories</option>
-            {groups.map(group => <option key={group.name}>{group.name}</option>)}
+            {categories.map(name => <option key={name}>{name}</option>)}
           </select>
         </label>
       </div>
-      <p className="staff-tools-count" role="status">{count ? `${count} ${count === 1 ? 'tool' : 'tools'}` : 'No tools match your filters.'}</p>
+      <p className="staff-tools-count" role="status">
+        {count ? `${count} ${count === 1 ? 'tool' : 'tools'}` : tools.length ? 'No tools match your filters.' : 'No tools have been assigned to your account.'}
+      </p>
       {results.map(group => (
         <section className="staff-tools-group" key={group.name}>
           <h3>{group.name}</h3>
           <ul>
-            {group.tools.map(tool => <li key={tool}><strong>{tool}</strong><span>Link pending</span></li>)}
+            {group.tools.map(tool => (
+              <li key={tool.id}>
+                {preview
+                  ? <><strong>{tool.name}</strong><span>Link pending</span></>
+                  : <a href={tool.url} target="_blank" rel="noopener noreferrer">{tool.name} ↗</a>}
+              </li>
+            ))}
           </ul>
         </section>
       ))}

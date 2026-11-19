@@ -1,7 +1,10 @@
 import { lazy, Suspense } from 'react';
 import './StaffTools.css';
 
-const LocalDirectory = import.meta.env.DEV ? lazy(() => import('./StaffToolsDirectory.jsx')) : null;
+const StaffArea = import.meta.env.VITE_SUPABASE_URL?.startsWith('https://') &&
+  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY?.startsWith('sb_publishable_')
+  ? lazy(() => import('./StaffToolsAuth.jsx'))
+  : import.meta.env.DEV ? lazy(() => import('./StaffToolsPreview.jsx')) : null;
 
 export default function StaffTools() {
   return (
@@ -17,9 +20,9 @@ export default function StaffTools() {
         <p className="staff-tools-summary">
           One place for DCMD staff to find and open the systems they use.
         </p>
-        {LocalDirectory ? (
-          <Suspense fallback={<p role="status">Loading the local directory preview…</p>}>
-            <LocalDirectory />
+        {StaffArea ? (
+          <Suspense fallback={<p role="status">Loading staff tools…</p>}>
+            <StaffArea />
           </Suspense>
         ) : (
           <section className="staff-tools-notice" aria-labelledby="staff-tools-status">
