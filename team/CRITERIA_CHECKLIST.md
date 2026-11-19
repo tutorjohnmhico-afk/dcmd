@@ -12,7 +12,7 @@ invent contributions or rewrite existing history. No points are claimed here.
 | Conflicts resolved cleanly | 10 | conflict workflow | real resolved-conflict PR, review and successful checks |
 | v1.0.0 tag exists | 10 | release procedure | actual approved release tag / commit |
 | Hotfix delivered correctly | 10 | hotfix issue and procedure | actual hotfix issue, reviewed PR, patch tag, production check |
-| Working live Vercel URL | 20 | app config and monorepo settings | actual production URL and verification date |
+| Working live Vercel URL | 20 | app config and monorepo settings | [https://dcmd-portal.vercel.app](https://dcmd-portal.vercel.app) - verified 2026-11-19 |
 | Total | 100 | preparation only | complete after team coordination |
 
 ## Team prerequisites
@@ -26,7 +26,7 @@ invent contributions or rewrite existing history. No points are claimed here.
 
 ## Release record
 
-- Production URL: Pending
+- Production URL: [https://dcmd-portal.vercel.app](https://dcmd-portal.vercel.app) - verified 2026-11-19
 - Default branch: master (verify in GitHub before configuring protection)
 - v1.0.0 tag / release commit: Pending
 - Release manager / reviewer: Pending

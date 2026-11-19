@@ -11,6 +11,13 @@ function openInquiry(event) {
   const values = new FormData(event.currentTarget);
   const topic = values.get('topic');
   const details = values.get('details').trim();
+  if (!details) {
+    const detailsField = event.currentTarget.elements.details;
+    detailsField.setCustomValidity('Please enter details for your inquiry.');
+    detailsField.reportValidity();
+    detailsField.focus();
+    return;
+  }
   const subject = encodeURIComponent(`DCMD inquiry: ${topic}`);
   const body = encodeURIComponent(details.replace(/\r?\n/g, '\r\n'));
 
@@ -52,8 +59,12 @@ export default function Contact({ inquiry }) {
                 name="details"
                 rows={4}
                 maxLength={maxDetailsLength}
+                required
                 value={details}
-                onChange={event => setDetails(event.target.value)}
+                onChange={event => {
+                  event.currentTarget.setCustomValidity('');
+                  setDetails(event.target.value);
+                }}
                 aria-describedby="inquiry-length"
               />
               <div className="inquiry-actions">
