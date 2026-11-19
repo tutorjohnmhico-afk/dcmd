@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import './App.css';
+import './Motion.css';
 import Header from './components/layout/Header.jsx';
 import Footer from './components/layout/Footer.jsx';
 import Hero from './components/sections/Hero.jsx';
@@ -10,18 +12,20 @@ import Vision from './components/sections/Vision.jsx';
 import Contact from './components/sections/Contact.jsx';
 
 export default function App() {
+  const [inquiry, setInquiry] = useState(null);
+
   return (
     <div className="site-shell" id="top">
       <a className="skip-link" href="#main">Skip to main content</a>
       <Header />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Hero />
         <CapabilityStrip />
         <About />
-        <Services />
-        <Systems />
+        <Services onInquire={topic => setInquiry({ topic })} />
+        <Systems onInquire={() => setInquiry({ topic: 'System access' })} />
         <Vision />
-        <Contact />
+        <Contact inquiry={inquiry} />
       </main>
       <Footer />
     </div>

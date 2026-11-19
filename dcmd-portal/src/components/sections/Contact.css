@@ -1,0 +1,58 @@
+.contact-inquiry {
+  margin-top: 20px;
+  border-top: 1px solid #ffffff23;
+}
+
+.contact-inquiry summary {
+  width: fit-content;
+  padding-block: 12px;
+  color: #9cddff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.contact-inquiry form {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.contact-inquiry label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.contact-inquiry select,
+.contact-inquiry textarea {
+  width: 100%;
+  min-height: 44px;
+  margin-bottom: 6px;
+  padding: 10px 12px;
+  color: #f7fbff;
+  background: #09253f;
+  border: 1px solid #6b91ac;
+  border-radius: 5px;
+  font: inherit;
+  color-scheme: dark;
+}
+
+.contact-inquiry textarea {
+  resize: vertical;
+}
+
+.contact-inquiry p {
+  margin: 0 0 6px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.contact-inquiry .inquiry-length {
+  color: #b4cbdb;
+  text-align: end;
+}
+
+.contact-inquiry button {
+  justify-self: start;
+  background: transparent;
+  cursor: pointer;
+}
