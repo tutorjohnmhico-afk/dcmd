@@ -79,7 +79,11 @@ export default function Systems({ onInquire, quest }) {
                 id="system-search"
                 type="search"
                 value={query}
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setQuery(value);
+                  if (value.trim().toLowerCase() === 'epay') quest?.complete('systems');
+                }}
                 onKeyDown={(event) => {
                   if (event.key === 'Escape' && query) {
                     event.preventDefault();
@@ -98,6 +102,7 @@ export default function Systems({ onInquire, quest }) {
             </div>
           </div>
 
+          <QuestNote quest={quest} id="systems">Use the directory search to find ePAY.</QuestNote>
           <p className="systems-search-status" role="status">
             {term &&
               (matches.length === 0
