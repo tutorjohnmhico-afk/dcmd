@@ -7,6 +7,7 @@ The public webpage is in **dcmd-portal/**. This is the existing repository; do n
 - [Assign sections and rotate roles](team/OWNERSHIP.md)
 - [Contribution workflow](CONTRIBUTING.md)
 - [Project criteria and evidence](team/CRITERIA_CHECKLIST.md)
+- [Future DCMD staff tools integration](team/DCMD_TOOLS_INTEGRATION.md)
 
 ```sh
 cd dcmd-portal
