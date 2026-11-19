@@ -1,0 +1,70 @@
+.quest-note, .quest-puzzle {
+  margin-top: 14px;
+  padding: 10px 12px;
+  color: #173a58;
+  background: #eaf5ff;
+  border-inline-start: 3px solid #55a9de;
+  border-radius: 0 7px 7px 0;
+  font-size: .84rem;
+  line-height: 1.45;
+}
+.quest-note { display: flex; align-items: center; gap: 8px; }
+.quest-marker { color: #125b95; font-weight: 800; }
+:is(.hero, .systems, .contact, .portal-challenge) .quest-note {
+  color: #d9f4ff;
+  background: #102f4de6;
+}
+:is(.hero, .systems, .contact, .portal-challenge) .quest-marker { color: #a7e7ff; }
+
+.quest-puzzle-options { display: flex; flex-wrap: wrap; gap: 7px; }
+.quest-puzzle-options p { flex-basis: 100%; font-weight: 800; }
+.quest-puzzle button {
+  min-height: 44px;
+  padding: 6px 11px;
+  border: 1px solid #5783a7;
+  border-radius: 6px;
+  color: #173a58;
+  background: #fff;
+  cursor: pointer;
+}
+.quest-puzzle button:not([aria-disabled="true"]):hover { background: #d9eeff; }
+.quest-puzzle button[aria-disabled="true"] { cursor: default; }
+.quest-puzzle > p:not(:empty) { margin-top: 8px; }
+
+.quest-progress {
+  position: fixed;
+  z-index: 12;
+  inset: auto 14px max(14px, env(safe-area-inset-bottom)) auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: min(420px, calc(100% - 28px));
+  padding: 10px 12px;
+  color: #f1faff;
+  background: #0a223aec;
+  border: 1px solid #5a8bad;
+  border-radius: 10px;
+  box-shadow: 0 8px 22px #081c3255;
+}
+.quest-progress-content { display: grid; gap: 4px; min-width: 0; flex: 1; }
+.quest-progress-content strong { font-size: .86rem; }
+.quest-progress-content progress { width: 100%; height: 6px; accent-color: #a3e5ff; }
+.quest-progress-content small { color: #c7dff0; font-size: .72rem; }
+.quest-progress :is(a, button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 44px;
+  padding: 5px 8px;
+  color: #caedff;
+  background: #163c5d;
+  border: 1px solid #47759a;
+  border-radius: 6px;
+  font-size: .76rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.quest-progress :is(a, button):hover { background: #21557f; }
+.quest-active .footer { padding-bottom: 100px; }
+.hero button.hero-challenge-link { padding: 0; border: 0; background: transparent; cursor: pointer; }

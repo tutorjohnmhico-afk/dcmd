@@ -2,8 +2,9 @@
 import { useRef, useState } from 'react';
 import Arrow from '../Arrow.jsx';
 import { systems } from '../../data/systems.js';
+import { QuestNote } from './PortalQuest.jsx';
 
-export default function Systems({ onInquire }) {
+export default function Systems({ onInquire, quest }) {
   const [query, setQuery] = useState('');
   const searchInput = useRef(null);
 
@@ -78,7 +79,11 @@ export default function Systems({ onInquire }) {
                 id="system-search"
                 type="search"
                 value={query}
-                onChange={(event) => setQuery(event.target.value)}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  setQuery(value);
+                  if (value.trim().toLowerCase() === 'epay') quest?.complete('systems');
+                }}
                 onKeyDown={(event) => {
                   if (event.key === 'Escape' && query) {
                     event.preventDefault();
@@ -96,6 +101,7 @@ export default function Systems({ onInquire }) {
               )}
             </div>
           </div>
+          <QuestNote quest={quest} id="systems">Use the directory search to find ePAY.</QuestNote>
 
           <p className="systems-search-status" role="status">
             {term &&

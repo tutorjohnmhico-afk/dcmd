@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Arrow from '../Arrow.jsx';
 import { services } from '../../data/services.js';
+import { QuestNote } from './PortalQuest.jsx';
 import './Contact.css';
 
 const email = 'dcmd@butuan.gov.ph';
@@ -17,7 +18,7 @@ function openInquiry(event) {
   window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
 }
 
-export default function Contact({ inquiry }) {
+export default function Contact({ inquiry, quest }) {
   const [details, setDetails] = useState('');
   const inquiryPanel = useRef(null);
   const inquiryTopic = useRef(null);
@@ -37,7 +38,10 @@ export default function Contact({ inquiry }) {
           <p className="eyebrow light">05 <span className="eyebrow-divider">/</span> GET IN TOUCH</p>
           <h2>Let's build a more <span>connected city.</span></h2>
           <p>For inquiries regarding the Data Center Management Division and its services, reach out to our team.</p>
-          <details ref={inquiryPanel} className="contact-inquiry" id="service-inquiry">
+          <QuestNote quest={quest} id="contact">Open the inquiry form to discover the support channel. Sending an email is optional.</QuestNote>
+          <details ref={inquiryPanel} className="contact-inquiry" id="service-inquiry" onToggle={event => {
+            if (event.currentTarget.open) quest?.complete('contact');
+          }}>
             <summary>Prepare a service inquiry</summary>
             <form onSubmit={openInquiry}>
               <label htmlFor="inquiry-topic">Topic</label>

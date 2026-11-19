@@ -1,6 +1,7 @@
 import Arrow from '../Arrow.jsx';
+import { QuestPuzzle } from './PortalQuest.jsx';
 
-export default function Vision() {
+export default function Vision({ quest }) {
   return (
     <section className="vision section-pad" id="vision" aria-labelledby="vision-title">
       <div className="container vision-layout">
@@ -9,6 +10,13 @@ export default function Vision() {
           <h2 id="vision-title">Driven by purpose.<br /><span>Built for progress.</span></h2>
           <p className="vision-subtext">Reliable infrastructure helps city teams deliver services consistently. Secure systems help protect the information those services depend on.</p>
           <a className="text-link" href="#services">Explore the services behind this work <Arrow diagonal /></a>
+          {quest && <QuestPuzzle quest={quest} id="vision"
+            prompt="Which action helps a city service recover after a disruption?"
+            options={[
+              ['Wait for a failure before planning', false],
+              ['Prepare backups and test recovery', true],
+              ['Store all data on one device', false],
+            ]} />}
         </div>
         <div className="vision-statement">
           <span className="quote-mark" aria-hidden="true">“</span>

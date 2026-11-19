@@ -1,4 +1,5 @@
 import Arrow from '../Arrow.jsx';
+import { QuestPuzzle } from './PortalQuest.jsx';
 
 const objectives = [
   ['Connect city offices', 'Maintain the network infrastructure that lets city teams work together.', '#services'],
@@ -6,7 +7,7 @@ const objectives = [
   ['Protect service continuity', 'Use security controls, backups, and recovery planning to reduce disruption.', '#service-04'],
 ];
 
-export default function About() {
+export default function About({ quest }) {
   return (
     <section className="intro section-pad" id="about" aria-labelledby="about-title">
       <div className="container">
@@ -28,6 +29,9 @@ export default function About() {
             </a>
           ))}
         </div>
+        {quest && <QuestPuzzle quest={quest} id="about"
+          prompt="City offices need to work together across separate locations. Which objective fits?"
+          options={objectives.map(([title], index) => [title, index === 0])} />}
       </div>
     </section>
   );
