@@ -37,7 +37,6 @@ export default function Contact({ inquiry }) {
           <p className="eyebrow light">05 <span className="eyebrow-divider">/</span> GET IN TOUCH</p>
           <h2>Let's build a more <span>connected city.</span></h2>
           <p>For inquiries regarding the Data Center Management Division and its services, reach out to our team.</p>
-          <a className="button button-primary" href={`mailto:${email}`}>Email our division <Arrow diagonal /></a>
           <details ref={inquiryPanel} className="contact-inquiry" id="service-inquiry">
             <summary>Prepare a service inquiry</summary>
             <form onSubmit={openInquiry}>
@@ -57,9 +56,10 @@ export default function Contact({ inquiry }) {
                 onChange={event => setDetails(event.target.value)}
                 aria-describedby="inquiry-length"
               />
-              <p className="inquiry-length" id="inquiry-length">{details.length}/{maxDetailsLength} characters</p>
-              <p>This opens a draft in your email app for you to review and send.</p>
-              <button className="button button-outline" type="submit">Open email draft <Arrow diagonal /></button>
+              <div className="inquiry-actions">
+                <p className="inquiry-length" id="inquiry-length">{details.length}/{maxDetailsLength} characters</p>
+                <button className="button button-outline" type="submit">Send <Arrow diagonal /></button>
+              </div>
             </form>
           </details>
         </div>

@@ -38,6 +38,7 @@
 
 .contact-inquiry textarea {
   resize: vertical;
+  margin-bottom: 0;
 }
 
 .contact-inquiry p {
@@ -48,7 +49,18 @@
 
 .contact-inquiry .inquiry-length {
   color: #b4cbdb;
-  text-align: end;
+  text-align: start;
+}
+
+.contact-inquiry .inquiry-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.contact-inquiry .inquiry-actions .inquiry-length {
+  margin: 0;
 }
 
 .contact-inquiry button {
