@@ -1,0 +1,187 @@
+.infra-explorer {
+  min-width: 0;
+  padding-block: 28px;
+}
+
+.infra-scene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: clamp(230px, 28vw, 325px);
+  perspective: 850px;
+  isolation: isolate;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.infra-scene:active { cursor: grabbing; }
+
+.infra-model {
+  position: relative;
+  width: min(62%, clamp(150px, 17vw, 220px));
+  aspect-ratio: 1;
+  transform-style: preserve-3d;
+  transform: translateX(var(--hover-shift, 0px)) rotateX(calc(var(--view-pitch) + var(--hover-pitch, 0deg)))
+    rotateY(calc(var(--view-yaw) + var(--hover-yaw, 0deg)));
+  transition: transform .18s ease-out;
+  animation: infra-lift 4.5s ease-in-out;
+}
+
+.infra-scene:active .infra-model {
+  transform: rotateX(var(--view-pitch)) rotateY(var(--view-yaw));
+  transition: none;
+  animation: none;
+}
+
+@keyframes infra-lift {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -15px; }
+}
+
+.infra-orbit {
+  position: absolute;
+  width: min(85%, 340px);
+  height: 35%;
+  bottom: 7%;
+  border: 1px solid color-mix(in srgb, var(--infra-accent) 48%, transparent);
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #78ceff22, transparent 68%);
+  box-shadow: inset 0 0 22px #78ceff22, 0 0 28px #78ceff20;
+}
+
+.infra-orbit::after {
+  position: absolute;
+  inset: 14%;
+  border: 1px dashed #78ceff55;
+  border-radius: inherit;
+  content: "";
+}
+
+.infra-orbit span {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--infra-accent);
+  box-shadow: 0 0 14px var(--infra-accent);
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.infra-orbit span:nth-child(1) { left: 10%; top: 19%; }
+.infra-orbit span:nth-child(2) { right: 4%; bottom: 26%; }
+.infra-orbit span:nth-child(3) { left: 40%; bottom: 0; }
+
+.hero:hover .infra-orbit span,
+.infra-scene:focus-visible .infra-orbit span {
+  transform: scale(1.5);
+}
+
+.infra-icon-slice {
+  position: absolute;
+  inset: 0;
+  display: block;
+  color: var(--infra-accent);
+  transform: translateZ(calc(14px - var(--slice-depth) * 3.5px));
+}
+
+.infra-icon-slice svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.infra-icon-slice:not(:first-child, :last-child) {
+  color: color-mix(in srgb, var(--infra-accent) 43%, #0c3355);
+}
+
+.infra-icon-slice:is(:first-child, :last-child) {
+  filter: drop-shadow(0 0 4px var(--infra-accent)) drop-shadow(0 0 16px var(--infra-accent));
+}
+
+.infra-explorer .infra-heading {
+  margin-bottom: 10px;
+}
+
+.infra-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.infra-controls button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: #d8edfc;
+  background: transparent;
+  font-size: .8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .16s ease, background-color .16s ease, border-color .16s ease;
+}
+
+.infra-controls button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.infra-controls button:hover {
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.infra-controls button[aria-pressed="true"] {
+  border-color: var(--infra-accent);
+  color: var(--infra-accent);
+}
+
+.infra-description {
+  min-height: 100px;
+  margin-top: 14px;
+  padding-block: 12px 0;
+  border-top: 1px solid #80c7ff4d;
+}
+
+.infra-description strong {
+  color: var(--infra-accent);
+}
+
+.infra-description p {
+  margin: 5px 0 0;
+  color: #c6dce9;
+  font-size: .86rem;
+  line-height: 1.55;
+}
+
+.infra-description a {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 44px;
+  color: var(--infra-accent);
+  font-size: .82rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .infra-explorer { padding-block: 0 34px; }
+  .infra-scene { height: 270px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .infra-model {
+    transform: rotateX(var(--view-pitch)) rotateY(var(--view-yaw));
+    transition: none;
+  }
+  .infra-controls button:hover,
+  .hero:hover .infra-orbit span,
+  .infra-scene:focus-visible .infra-orbit span { transform: none; }
+}

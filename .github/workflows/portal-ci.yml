@@ -1,0 +1,50 @@
+name: Portal CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portal-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  portal-checks:
+    name: Portal checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dcmd-portal
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: dcmd-portal/.nvmrc
+          cache: npm
+          cache-dependency-path: dcmd-portal/package-lock.json
+      - run: npm ci
+      - run: npm run check
+
+  conventions:
+    name: PR conventions
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: dcmd-portal/.nvmrc
+      - run: node dcmd-portal/scripts/conventions.mjs
+        env:
+          PR_BRANCH: ${{ github.head_ref }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
