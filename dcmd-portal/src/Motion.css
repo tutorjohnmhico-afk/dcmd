@@ -1,0 +1,57 @@
+.hero::before,
+.hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+}
+
+.hero::before {
+  background: radial-gradient(ellipse at var(--hero-pointer-x, 72%) var(--hero-pointer-y, 35%),
+    #38b5f237, transparent 53%);
+}
+
+.hero::after {
+  background: linear-gradient(115deg, transparent 40%, #9bdcff21 49%, transparent 58%);
+  background-size: 260% 100%;
+  background-position: 100% 50%;
+  opacity: 0;
+  animation: hero-light-sweep 4.5s ease-out;
+}
+
+@keyframes hero-light-sweep {
+  0% { opacity: 0; background-position: 100% 50%; }
+  25%, 65% { opacity: 1; }
+  100% { opacity: 0; background-position: 0 50%; }
+}
+
+.reading-progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll(root block)) {
+  .reading-progress {
+    position: absolute;
+    inset: auto 0 0;
+    display: block;
+    height: 2px;
+    background: linear-gradient(90deg, #267fce, #a4e3ff);
+    box-shadow: 0 0 10px #73caff70;
+    transform-origin: left;
+    animation: reading-progress linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+@keyframes reading-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    background: radial-gradient(ellipse at 72% 35%, #38b5f237, transparent 53%);
+  }
+  .reading-progress { display: none; }
+}

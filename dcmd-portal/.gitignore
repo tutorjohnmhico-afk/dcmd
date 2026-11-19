@@ -23,3 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 
+
+# Local checks and environment files
+.tmp-team-*
+.env
+.env.*
+!.env.example
+.vercel/

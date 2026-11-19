@@ -1,16 +1,56 @@
-# React + Vite
+# DCMD Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Public React + Vite webpage for the Data Center Management Division, City
+Government of Butuan. This app lives in the existing
+[`tutorjohnmhico-afk/dcmd`](https://github.com/tutorjohnmhico-afk/dcmd) repository.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Install Node 24, then from a fresh clone:
 
-## React Compiler
+```sh
+git clone https://github.com/tutorjohnmhico-afk/dcmd.git
+cd dcmd/dcmd-portal
+npm ci
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Open the local URL Vite prints. No backend or private environment variables are
+required. Contact details and official copy still need the team's approval.
 
-## Expanding the Oxlint configuration
+## Checks
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```sh
+npm run check
+```
+
+This runs Oxlint, convention validator tests, server-rendered page checks, and a
+production build. Page checks verify section targets, unique IDs, a single h1,
+service/system cards, and contact/navigation markup. They do not replace checking
+mobile layout or keyboard interaction in a browser.
+
+```sh
+npm run build
+npm run preview
+```
+
+`dist/` is generated and should not be committed.
+
+## Team workflow
+
+- [Team guide and ready-to-share instructions](../team/TEAM_GUIDE.md)
+- [Section ownership and role rotation](../team/OWNERSHIP.md)
+- [Contributing](../CONTRIBUTING.md)
+- [Criteria evidence checklist](../team/CRITERIA_CHECKLIST.md)
+
+`src/App.jsx` composes small section components. Content arrays live in `src/data`.
+Coordinate edits to shared styles and navigation to reduce merge conflicts.
+
+## Vercel
+
+Use the existing GitHub repository. Set Vercel's **Root Directory** to
+`dcmd-portal`, framework to **Vite**, build to `npm run build`, output to `dist`,
+install command to `npm ci`, and Node version to **24.x**. Production branch is
+currently `master`. The committed `vercel.json` supplies the app's build settings;
+repository connection, production branch and root directory are account settings.
+See the team guide for review, preview and release steps.
