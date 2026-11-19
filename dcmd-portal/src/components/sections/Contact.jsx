@@ -64,7 +64,13 @@ export default function Contact({ inquiry }) {
           </details>
         </div>
         <div className="contact-details">
+          <div>
+            <small>SECTION</small>
+            <strong>Convergence Network Management Section</strong>
+            <strong>Server &amp; System Management Section</strong>
+          </div>
           <div><small>DIVISION</small><strong>Data Center Management Division</strong></div>
+          <div><small>DEPARTMENT</small><strong>City ICT Department</strong></div>
           <div><small>ORGANIZATION</small><strong>City Government of Butuan</strong></div>
           <div><small>LOCATION</small><strong>Butuan City, Agusan del Norte</strong></div>
           <div><small>EMAIL</small><a href={`mailto:${email}`}>{email}</a></div>
