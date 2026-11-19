@@ -18,7 +18,7 @@ function clearHeroPointer(event) {
   const { style } = event.currentTarget;
   hoverProperties.forEach(property => style.removeProperty(property));
 }
-export default function Hero() {
+export default function Hero({ quest, onStartQuest }) {
   return (
     <section className="hero" id="hero" aria-labelledby="hero-title" onPointerMove={trackHeroPointer} onPointerLeave={clearHeroPointer}>
           <div className="hero-grid" aria-hidden="true" /><div className="hero-glow" aria-hidden="true" />
@@ -28,9 +28,14 @@ export default function Hero() {
               <h1 id="hero-title">Building a<br /><em>connected</em><br />Butuan<span className="heading-period">.</span></h1>
               <p className="hero-description">Secure digital infrastructure. Dependable enterprise systems. Technology that moves public service forward.</p>
               <div className="hero-actions"><a className="button button-primary" href="#services">Explore our services <Arrow diagonal /></a><a className="button button-outline" href="#about">Discover DCMD <span aria-hidden="true">↓</span></a></div>
+              <button className="hero-challenge-link" type="button" onClick={() => {
+                if (!quest) onStartQuest();
+              }} aria-disabled={Boolean(quest)}>
+                {quest ? 'DCMD quest active' : 'Start the DCMD quest'} <Arrow />
+              </button>
               <div className="hero-meta"><span className="meta-line" /> CITY GOVERNMENT OF BUTUAN <span className="meta-separator">/</span> AGUSAN DEL NORTE, PHILIPPINES</div>
             </div>
-            <InfrastructureExplorer />
+            <InfrastructureExplorer quest={quest} />
           </div>
           <div className="hero-bottom-line" />
         </section>

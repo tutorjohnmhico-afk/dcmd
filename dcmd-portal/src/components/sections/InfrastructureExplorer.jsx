@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { services } from '../../data/services.js';
+import { QuestNote } from './PortalQuest.jsx';
 import './InfrastructureExplorer.css';
 
 const layers = [
@@ -47,7 +48,7 @@ function rotate(view, pitch, yaw) {
   return { pitch: Math.max(-75, Math.min(75, view.pitch + pitch)), yaw: view.yaw + yaw };
 }
 
-export default function InfrastructureExplorer() {
+export default function InfrastructureExplorer({ quest }) {
   const [activeLayer, setActiveLayer] = useState(0);
   const [view, setView] = useState(initialView);
   const drag = useRef(null);
@@ -103,19 +104,23 @@ export default function InfrastructureExplorer() {
         </div>
       </div>
       <p className="eyebrow light infra-heading">Explore DCMD infrastructure</p>
-      <div className="infra-controls" role="group" aria-label="Infrastructure services">
+      <div className="infra-controls" id="infrastructure-controls" role="group" aria-label="Infrastructure services" tabIndex={-1}>
         {layers.map(({ label, icon }, index) => (
           <button
             key={label}
             type="button"
             aria-pressed={index === activeLayer}
-            onClick={() => setActiveLayer(index)}
+            onClick={() => {
+              setActiveLayer(index);
+              if (layers[index].icon === 'recovery') quest?.complete('hero');
+            }}
           >
             <InfrastructureIcon icon={icon} />
             {label}
           </button>
         ))}
       </div>
+      <QuestNote quest={quest} id="hero">A service needs to come back after an interruption. Select Recovery.</QuestNote>
       <div className="infra-description">
         <div aria-live="polite">
           <strong>{service.title}</strong>
