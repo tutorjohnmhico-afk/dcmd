@@ -7,7 +7,16 @@ const services = [
   { id: '03', symbol: '◇', title: 'Cybersecurity', description: 'Firewall management, endpoint protection, access controls, and security monitoring.', tags: ['Protection', 'Governance'] },
   { id: '04', symbol: '↺', title: 'Backup & Recovery', description: 'System and database backups, disaster recovery planning, and business continuity.', tags: ['Resilience', 'Continuity'] },
 ];
-const systems = ['BCRIS', 'CBPLD', 'CHRMS', 'ePAY', 'GSMS', 'IAMS', 'OSPAS', 'BATS'];
+const systems = [
+  { name: 'BCRIS', url: 'https://bcris.butuan.gov.ph/' },
+  { name: 'CBPLD', url: 'https://cbpld.butuan.gov.ph/' },
+  { name: 'CHRMS', url: 'https://chrms.butuan.gov.ph/' },
+  { name: 'ePAY', url: 'https://epay.butuan.gov.ph/' },
+  { name: 'GSMS', url: 'https://gsms.butuan.gov.ph/' },
+  { name: 'IAMS', url: 'https://iams.butuan.gov.ph/' },
+  { name: 'OSPAS', url: 'https://ospas.butuan.gov.ph/' },
+  { name: 'BATS', url: 'https://bats.butuan.gov.ph/' }
+];
 const navigation = [['About', '#about'], ['Services', '#services'], ['Systems', '#systems'], ['Vision', '#vision'], ['Contact', '#contact']];
 
 function Arrow({ diagonal = false }) { return <span aria-hidden="true">{diagonal ? '↗' : '→'}</span>; }
@@ -63,7 +72,52 @@ export default function App() {
         <div className="capability-strip" aria-label="Our technology priorities"><div className="container strip-inner"><span>SECURE INFRASTRUCTURE</span><i aria-hidden="true"/><span>RELIABLE SYSTEMS</span><i aria-hidden="true"/><span>CONNECTED GOVERNANCE</span><i aria-hidden="true"/><span>CONTINUOUS SERVICE</span></div></div>
         <section className="intro section-pad" id="about"><div className="container intro-grid"><div><p className="eyebrow">01 <span className="eyebrow-divider">/</span> WHO WE ARE</p><h2>Technology<br />that serves <span>people.</span></h2><div className="intro-accent" aria-hidden="true"><span>DCMD</span><span>01 — 05</span></div></div><div className="intro-content"><p className="lead">Building the digital foundation for better public service.</p><p>The Data Center Management Division (DCMD) manages the City Government's network infrastructure, data center facilities, cybersecurity initiatives, enterprise platforms, and information systems that enable digital governance.</p><p>Our work supports the essential technologies that help government teams operate securely, consistently, and efficiently.</p><a className="text-link" href="#contact">Connect with our division <Arrow diagonal /></a></div></div></section>
         <section className="services section-pad" id="services"><div className="container"><div className="section-heading"><div><p className="eyebrow">02 <span className="eyebrow-divider">/</span> WHAT WE DO</p><h2>Our core <span>capabilities.</span></h2></div><p>Essential technology services that support reliable, secure, and continuous government operations.</p></div><div className="service-grid">{services.map(service => <article className="service-card" key={service.id}><div className="service-card-top"><span className="service-icon" aria-hidden="true">{service.symbol}</span><span className="service-number">{service.id} / 04</span></div><h3>{service.title}</h3><p>{service.description}</p><div className="service-tags">{service.tags.map(tag => <span key={tag}>{tag}</span>)}</div><span className="service-rule" /></article>)}</div><div className="services-footer"><span>INFRASTRUCTURE <b>•</b> RESILIENCE <b>•</b> SECURITY</span><a href="#contact">Discuss a service request <Arrow diagonal /></a></div></div></section>
-        <section className="systems section-pad" id="systems"><div className="systems-grid-decoration" aria-hidden="true"/><div className="container systems-layout"><div className="systems-intro"><p className="eyebrow light">03 <span className="eyebrow-divider">/</span> DIGITAL ECOSYSTEM</p><h2>Systems behind<br />the <span>service.</span></h2><p>Enterprise platforms supported by the division to help enable coordinated and efficient government operations.</p><div className="systems-count"><strong>08</strong><span>LISTED ENTERPRISE<br />SYSTEMS</span></div></div><div className="systems-list" aria-label="Supported information systems">{systems.map((name, index) => <div className="system-item" key={name}><span className="system-index">{String(index + 1).padStart(2, '0')}</span><strong>{name}</strong><span className="system-symbol" aria-hidden="true">↗</span></div>)}</div></div></section>
+        <section className="systems section-pad" id="systems">
+          <div className="systems-grid-decoration" aria-hidden="true"/>
+          <div className="container systems-layout">
+            <div className="systems-intro">
+              <p className="eyebrow light">03 <span className="eyebrow-divider">
+                /
+                </span> DIGITAL ECOSYSTEM
+                </p><h2>Systems behind<br />the <span>service.</span></h2>
+                <p>
+                  Enterprise platforms supported by the division to help enable coordinated and efficient government operations.
+                  </p>
+                  <div className="systems-count"><strong>08</strong><span>LISTED ENTERPRISE<br />SYSTEMS</span></div></div><div className="systems-list" aria-label="Supported information systems">
+  {systems.map((system, index) => (
+    system.url ? (
+      <a
+        className="system-item"
+        key={system.name}
+        href={system.url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span className="system-index">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+
+        <strong>{system.name}</strong>
+
+        <span className="system-symbol" aria-hidden="true">↗</span>
+      </a>
+    ) : (
+      <div
+        className="system-item is-unavailable"
+        key={system.name}
+        title="Website URL not yet configured"
+      >
+        <span className="system-index">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+
+        <strong>{system.name}</strong>
+
+        <span className="system-symbol" aria-hidden="true">↗</span>
+      </div>
+    )
+  ))}
+</div></div></section>
         <section className="vision section-pad" id="vision"><div className="container vision-layout"><div><p className="eyebrow">04 <span className="eyebrow-divider">/</span> OUR DIRECTION</p><h2>Driven by purpose.<br /><span>Built for progress.</span></h2><p className="vision-subtext">A clear direction for resilient, inclusive and citizen-centered digital governance.</p></div><div className="vision-statement"><span className="quote-mark" aria-hidden="true">“</span><blockquote>To be a leading technology division that enables efficient, transparent, innovative, and citizen-centered governance through modern information and communications technology.</blockquote><p>OUR VISION</p></div></div></section>
         <section className="contact section-pad" id="contact"><div className="container contact-panel"><div><p className="eyebrow light">05 <span className="eyebrow-divider">/</span> GET IN TOUCH</p><h2>Let's build a more <span>connected city.</span></h2><p>For inquiries regarding the Data Center Management Division and its services, reach out to our team.</p><a className="button button-primary" href="mailto:dcmd@butuan.gov.ph">Email our division <Arrow diagonal /></a></div><div className="contact-details"><div><small>DIVISION</small><strong>Data Center Management Division</strong></div><div><small>ORGANIZATION</small><strong>City Government of Butuan</strong></div><div><small>LOCATION</small><strong>Butuan City, Agusan del Norte</strong></div><div><small>EMAIL</small><a href="mailto:dcmd@butuan.gov.ph">dcmd@butuan.gov.ph</a></div></div></div></section>
       </main>
