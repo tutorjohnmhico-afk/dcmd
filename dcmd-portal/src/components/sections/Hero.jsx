@@ -33,7 +33,6 @@ export default function Hero() {
             <InfrastructureExplorer />
           </div>
           <div className="hero-bottom-line" />
-          <div className="hero-side-label" aria-hidden="true">DIGITAL INFRASTRUCTURE / 2026</div>
         </section>
   );
 }
