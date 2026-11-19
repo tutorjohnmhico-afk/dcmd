@@ -19,8 +19,10 @@ export default function App() {
       <a className="skip-link" href="#main">Skip to main content</a>
       <Header />
       <main id="main" tabIndex={-1}>
-        <Hero />
-        <CapabilityStrip />
+        <div className="landing">
+          <Hero />
+          <CapabilityStrip />
+        </div>
         <About />
         <Services onInquire={topic => setInquiry({ topic })} />
         <Systems onInquire={() => setInquiry({ topic: 'System access' })} />
