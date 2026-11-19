@@ -20,7 +20,6 @@ export default function Footer() {
       </div>
       <div className="container footer-inner">
         <div className="footer-brand">DCMD<span>© {currentYear} Comeback King. All rights reserved.</span></div>
-        <a href="#top">Back to top ↑</a>
       </div>
     </footer>
   );

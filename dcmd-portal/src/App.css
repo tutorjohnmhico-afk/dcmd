@@ -154,7 +154,6 @@ h2 span { color: var(--blue); }
 .footer-nav a { display: inline-flex; min-height: 44px; align-items: center; font-size: .9rem; font-weight: 700; }
 .footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .footer-inner { position: relative; align-items: center; justify-content: center; border-top: 1px solid #2b4b69; padding-block: 18px; font-size: .83rem; }
-.footer-inner > a { position: absolute; right: 0; }
 .footer-brand { color: #fff; font-weight: 800; text-align: center; }
 .footer-brand span { margin-left: 10px; color: #b1c6da; font-weight: 400; }
 
@@ -179,7 +178,6 @@ h2 span { color: var(--blue); }
   .strip-inner a:nth-child(n + 3) { border-top: 1px solid #254c6c; }
   .objective-grid, .service-grid { grid-template-columns: 1fr; }
   .footer-inner { align-items: center; flex-direction: column; gap: 10px; }
-  .footer-inner > a { position: static; }
   .footer-brand span { display: block; margin: 4px 0 0; }
 }
 
