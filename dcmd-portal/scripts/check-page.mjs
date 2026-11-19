@@ -22,6 +22,7 @@ try {
   assert.equal([...html.matchAll(/class="system-item"/g)].length, 8);
   assert.match(html, /aria-controls="primary-nav"/);
   assert.match(html, /href="mailto:dcmd@butuan.gov.ph"/);
+  assert.match(html, /<textarea[^>]*required[^>]*>/);
   assert.match(html, /Skip to main content/);
   console.log('Page checks passed: section links, unique IDs, headings, cards, contact and navigation markup.');
 } finally {
