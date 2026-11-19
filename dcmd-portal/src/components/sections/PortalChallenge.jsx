@@ -54,7 +54,7 @@ export default function PortalChallenge({ quest }) {
 
   return (
     <section className="portal-challenge" id="dcmd-challenge" aria-labelledby="dcmd-challenge-title" tabIndex={-1}>
-      <div className="container challenge-layout">
+      <div className={`container challenge-layout${round < 0 ? ' challenge-layout-compact' : ''}`}>
         <div className="challenge-intro">
           <p className="eyebrow light">Interactive challenge</p>
           <h2 id="dcmd-challenge-title">Keep Butuan <span>connected.</span></h2>
