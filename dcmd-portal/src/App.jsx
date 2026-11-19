@@ -30,10 +30,10 @@ export default function App() {
       <Header />
       <main id="main" tabIndex={-1}>
         <div className="landing">
-          <Hero quest={quest} onStartQuest={() => setEarned([])} />
+          <Hero />
           <CapabilityStrip />
         </div>
-        <About quest={quest} />
+        <About />
         <Services onInquire={topic => setInquiry({ topic })} />
         <PortalChallenge quest={quest} />
         <Systems quest={quest} onInquire={() => setInquiry({ topic: 'System access' })} />
